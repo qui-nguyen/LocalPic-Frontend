@@ -13,11 +13,11 @@ import * as Permissions from "expo-permissions";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage"; //Local Storage
 import socketIOClient from "socket.io-client";
-var socket = socketIOClient("https://mysterious-sierra-29108.herokuapp.com/");
+var socket = socketIOClient("https://localpic.herokuapp.com/");
 
 function MapScreen(props) {
   /*------------------------------------ State ---------------------------------*/
-  const [position, setPosition] = useState({});
+  const [position, setPosition] = useState({latitude: 45.7537667, longitude: 4.862333,});
   const [listPosition, setListPosition] = useState([]);
   const [addPOI, setAddPOI] = useState(false);
   const [title, setTitle] = useState("");
@@ -35,8 +35,8 @@ function MapScreen(props) {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       /*---------------Get permission acces to local of user --------------*/
       if (status === "granted") {
-        let location = await Location.getCurrentPositionAsync({});
-        Location.watchPositionAsync({ distanceInterval: 50 }, (location) => {
+        //let location = await Location.getCurrentPositionAsync({});
+        Location.watchPositionAsync({ distanceInterval: 2 }, (location) => {
           setPosition({
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,

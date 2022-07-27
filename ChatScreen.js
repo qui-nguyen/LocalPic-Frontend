@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 /*----Web socket----*/
 import socketIOClient from "socket.io-client";
 
-var socket = socketIOClient("https://mysterious-sierra-29108.herokuapp.com/");
+var socket = socketIOClient("https://localpic.herokuapp.com/");
 
 function ChatScreen(props) {
   const [currentMessage, setCurrentMessage] = useState("");
